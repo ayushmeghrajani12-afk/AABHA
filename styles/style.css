@@ -516,7 +516,7 @@ h3 {
 .site-footer {
   background-color: var(--color-primary);
   padding: var(--spacing-lg) var(--spacing-md);
-  color: #fff;
+  color: black;
   text-align: center;
 }
 
@@ -529,7 +529,7 @@ h3 {
 }
 
 .footer-brand h3 {
-  color: var(--color-accent);
+  color: black;
   font-size: clamp(1.5rem, 3vw, 2rem);
   margin-bottom: 0.5rem;
 }
@@ -553,7 +553,7 @@ h3 {
 }
 
 .footer-bottom {
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid black;
   padding-top: var(--spacing-sm);
   font-size: clamp(0.8rem, 1.3vw, 0.9rem);
   opacity: 0.6;
@@ -1126,4 +1126,340 @@ h3 {
     font-size: 2.23rem;
     color: var(--color-primary);
   }
+}
+
+/* --- Product layout fixes: center grid and avoid overflow --- */
+
+/* Make sure the section has left/right padding (use existing spacing variable) */
+.products-section {
+  background-color: #020805;
+  padding: var(--spacing-xl) var(--spacing-md);
+  /* restore horizontal padding */
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+  /* prevents accidental horizontal overflow */
+}
+
+/* Constrain the grid and center it on large screens */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  /* more breathing room between cards */
+  background-color: rgba(212, 175, 55, 0.01);
+  max-width: 1200px;
+  /* center and limit total width */
+  margin: 0 auto;
+  /* centers the grid */
+  padding: 0;
+  /* remove outer padding so grid aligns */
+  box-sizing: border-box;
+}
+
+/* Make the cards predictable — remove aspect-ratio forcing overflow */
+.product-card {
+  background: var(--color-bg-alt);
+  border-radius: 0;
+  box-shadow: none;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 420px;
+  /* predictable card height */
+  overflow: hidden;
+  /* keeps things inside the card */
+  box-sizing: border-box;
+}
+
+/* Control the image area height and cropping */
+.product-image {
+  flex: 0 0 60%;
+  /* image area takes top 60% of the card */
+  padding: 0;
+  /* remove internal padding for consistent sizing */
+  display: block;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+/* Make images fill their area without leaving blank space */
+.placeholder-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* COVER avoids empty space and keeps alignment */
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+/* Keep product-info positioned relative so it won't push the card height */
+.product-info {
+  position: relative;
+  /* not absolute — prevents overlap-induced overflow */
+  width: 100%;
+  padding: var(--spacing-md);
+  background: linear-gradient(to top, rgba(5, 17, 10, 0.95), transparent);
+  transform: none;
+  /* remove translateY default behaviour for mobile layout */
+  transition: transform 0.35s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+/* Hover style: reveal info using transform but still not overflow page */
+.product-card:hover .product-info {
+  transform: translateY(0);
+}
+
+/* Small polish: prevent page from horizontal overflow globally */
+html,
+body {
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+/* Responsive: 3 → 2 → 1 columns, keep grid centered and cards fitting */
+@media (max-width: 1200px) {
+  .product-grid {
+    max-width: 1000px;
+    gap: 1.5rem;
+  }
+
+  .product-card {
+    min-height: 380px;
+  }
+
+  .product-image {
+    flex-basis: 62%;
+  }
+}
+
+@media (max-width: 768px) {
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    padding: 0 1rem;
+  }
+
+  .product-card {
+    min-height: 340px;
+  }
+
+  .product-image {
+    flex-basis: 58%;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 0 0.75rem;
+  }
+
+  .product-card {
+    min-height: 360px;
+  }
+
+  .product-image {
+    flex-basis: 54%;
+  }
+}
+
+/* ===========================
+   Product layout — final polish
+   Insert this at the end of your stylesheet
+   =========================== */
+
+/* Increase readability and remove vertical overflow on small screens */
+.products-section {
+  padding-top: 2.5rem;
+  /* less vertical padding for mobile */
+  padding-bottom: 2.5rem;
+}
+
+/* Make grid centered and consistent on all widths */
+.product-grid {
+  margin: 0 auto;
+  padding: 0 1rem;
+  gap: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Cards: allow natural height on small screens, consistent spacing */
+.product-card {
+  min-height: auto;
+  /* let content define height on small screens */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 0;
+  overflow: hidden;
+  border-left: 1px solid rgba(255, 255, 255, 0.02);
+  border-right: 1px solid rgba(0, 0, 0, 0.02);
+}
+
+/* Image area: fixed-ish height to avoid huge vertical scrolling */
+.product-image {
+  padding: 0;
+  width: 100%;
+  height: 220px;
+  /* consistent preview height on mobile */
+  display: block;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* make images cover area and align visually */
+.placeholder-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* fills card nicely */
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+/* Product info sits below image, not absolutely positioned */
+.product-info {
+  position: relative;
+  transform: none;
+  padding: 0.9rem 1rem;
+  background: linear-gradient(to top, rgba(5, 17, 10, 0.98), rgba(5, 17, 10, 0.0));
+  box-sizing: border-box;
+}
+
+/* Tighter typography spacing for small screens */
+.product-name {
+  font-size: 1.05rem;
+  margin-bottom: 6px;
+}
+
+.product-desc {
+  font-size: 0.85rem;
+  margin-bottom: 8px;
+}
+
+.product-price {
+  font-size: 0.95rem;
+  margin-bottom: 10px;
+  display: block;
+}
+
+/* Add visible separator between cards to avoid feeling stacked strangely */
+.product-card+.product-card {
+  margin-top: 1rem;
+}
+
+/* View more button — centered, full width on small view */
+.view-more {
+  display: block;
+  width: calc(100% - 2rem);
+  max-width: 360px;
+  margin: 1.25rem auto 0;
+  text-align: center;
+  color: var(--color-primary);
+  font-size: 1rem;
+  border: 1px solid var(--color-primary);
+  padding: 0.8rem 1rem;
+  border-radius: 6px;
+  background: transparent;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+/* subtle hover */
+.view-more:hover {
+  background: rgba(212, 175, 55, 0.06);
+}
+
+/* Prevent accidental horizontal scroll */
+html,
+body {
+  overflow-x: hidden;
+}
+
+/* ===========================
+   Responsive tweaks
+   =========================== */
+
+@media (max-width: 768px) {
+  .product-image {
+    height: 240px;
+  }
+
+  .product-card {
+    min-height: auto;
+  }
+
+  .product-grid {
+    gap: 1rem;
+    padding: 0 1rem;
+  }
+
+  .product-info {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-grid {
+    grid-template-columns: 1fr;
+    padding: 0 0.75rem;
+    gap: 1rem;
+  }
+
+  .product-image {
+    height: 200px;
+  }
+
+  .placeholder-img {
+    object-position: center top;
+  }
+
+  .product-name {
+    font-size: 1rem;
+  }
+
+  .product-desc {
+    font-size: 0.82rem;
+  }
+
+  .product-price {
+    font-size: 0.95rem;
+  }
+
+  .view-more {
+    width: calc(100% - 1.5rem);
+    max-width: none;
+    padding: 0.9rem 1rem;
+    font-size: 0.98rem;
+  }
+
+  /* reduce footer spacing so page doesn't feel long */
+  .site-footer {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+}
+
+a {
+  color: inherit;
+  /* takes parent text color */
+  text-decoration: none;
+  /* removes underline */
+}
+
+a:visited {
+  color: inherit;
+  /* prevents purple/blue visited color */
+}
+
+a:hover,
+a:focus {
+  color: var(--color-primary);
+  /* your gold hover */
+  outline: none;
 }
