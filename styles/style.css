@@ -392,6 +392,10 @@ h3 {
 .products-section {
   background-color: #020805;
   padding: var(--spacing-xl) var(--spacing-md);
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+  box-sizing: border-box;
 }
 
 .product-grid {
@@ -399,6 +403,11 @@ h3 {
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 1px;
   background-color: rgba(212, 175, 55, 0.1);
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 .product-card {
@@ -410,6 +419,8 @@ h3 {
   border: none;
   display: flex;
   flex-direction: column;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .product-card:hover {
