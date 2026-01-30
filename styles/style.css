@@ -150,12 +150,15 @@ h3 {
 
 /* --- Navigation --- */
 .main-nav {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
   padding: 1rem 2rem;
   max-width: 100%;
-  margin: 0 auto;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   z-index: 100;
   color: var(--color-primary);
 }
@@ -171,6 +174,11 @@ h3 {
   display: flex;
   gap: var(--spacing-md);
   align-items: center;
+  margin-top: 20px;
+}
+
+.nav-links a {
+  display: inline-block;
 }
 
 .nav-links span {
@@ -181,6 +189,7 @@ h3 {
   color: var(--color-text);
   transition: color 0.3s;
   cursor: pointer;
+  color: black;
 }
 
 .nav-links a:hover {
@@ -778,12 +787,16 @@ h3 {
   }
 
   .main-nav {
+    position: absolute;
+    top: 0;
+    left: 32%;
+    transform: translateX(-50%);
     padding: 1rem;
-    margin: 0;
   }
 
   .nav-links {
     gap: 1rem;
+    margin-top: 15px;
   }
 
   .nav-links span {
@@ -853,6 +866,10 @@ h3 {
 /* Small mobile (480px) */
 @media (max-width: 480px) {
   .main-nav {
+    position: absolute;
+    top: 0;
+    left: 30%;
+    transform: translateX(-50%);
     flex-direction: column;
     gap: 0.75rem;
     padding: 0.75rem 0.5rem;
@@ -862,7 +879,8 @@ h3 {
   .nav-links {
     flex-wrap: wrap;
     justify-content: center;
-    gap: 0.5rem;
+    gap: 1rem;
+    margin-top: 10px;
   }
 
   .nav-links span {
@@ -932,6 +950,19 @@ h3 {
 
 /* Extra small screens (360px and below) */
 @media (max-width: 360px) {
+  .main-nav {
+    position: absolute;
+    top: 0;
+    left: 25%;
+    transform: translateX(-50%);
+    padding: 0.5rem;
+  }
+
+  .nav-links {
+    margin-top: 8px;
+    gap: 1rem;
+  }
+
   .hero-content {
     padding: 0;
     max-width: 95vw;
@@ -1033,5 +1064,9 @@ h3 {
 
   .preloader-text {
     font-size: 3rem;
+  }
+
+  .nav-links {
+    margin-top: 10px;
   }
 }
