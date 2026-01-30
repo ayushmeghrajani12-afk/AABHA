@@ -2,8 +2,8 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Aabha - Inspired by Nature</title>
     <style>
         * {
@@ -61,30 +61,10 @@
             transition: transform 0.4s ease, box-shadow 0.4s ease;
             animation: fadeInUp 0.8s ease-out;
             animation-fill-mode: both;
-        }
-
-        .product-card:nth-child(1) {
-            animation-delay: 0.1s;
-        }
-
-        .product-card:nth-child(2) {
-            animation-delay: 0.2s;
-        }
-
-        .product-card:nth-child(3) {
-            animation-delay: 0.3s;
-        }
-
-        .product-card:nth-child(4) {
-            animation-delay: 0.4s;
-        }
-
-        .product-card:nth-child(5) {
-            animation-delay: 0.5s;
-        }
-
-        .product-card:nth-child(6) {
-            animation-delay: 0.6s;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            /* ensure full-card column layout */
         }
 
         .product-card:hover {
@@ -97,43 +77,64 @@
             height: 350px;
             object-fit: cover;
             transition: transform 0.6s ease;
+            flex-shrink: 0;
         }
 
         .product-card:hover .product-image {
             transform: scale(1.05);
         }
 
+        /* Make the info area a column so footer can be pushed to bottom */
         .product-info {
             padding: 30px;
             background: linear-gradient(to bottom, #f8f9f5 0%, #ffffff 100%);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            flex: 1 1 auto;
         }
 
         .product-name {
             color: #2d5244;
             font-size: 1.8rem;
-            margin-bottom: 8px;
+            margin-bottom: 0;
             font-weight: 600;
+        }
+
+        /* single-line tagline for each card */
+        .product-tagline {
+            color: #3b5a47;
+            font-size: 1rem;
+            margin-bottom: 0;
+            font-weight: 500;
+            font-style: normal;
         }
 
         .product-description {
             color: #5a7a67;
             font-size: 0.95rem;
-            margin-bottom: 20px;
+            margin-bottom: 0;
             font-style: italic;
             line-height: 1.5;
         }
 
+        /* footer pinned to bottom of .product-info */
         .product-footer {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-top: 20px;
+            margin-top: auto;
+            /* pushes footer to bottom */
+            padding-top: 18px;
         }
 
         .price {
             color: #d4af37;
             font-size: 2rem;
             font-weight: 700;
+            min-width: 72px;
+            /* reserve visual space even if empty */
+            text-align: left;
         }
 
         .shop-now-btn {
@@ -201,11 +202,17 @@
             .product-footer {
                 flex-direction: column;
                 gap: 15px;
+                align-items: stretch;
             }
 
             .shop-now-btn {
                 width: 100%;
                 justify-content: center;
+            }
+
+            .price {
+                text-align: center;
+                min-width: auto;
             }
         }
 
@@ -221,10 +228,6 @@
             font-weight: 600;
             z-index: 1;
         }
-
-        .product-card {
-            position: relative;
-        }
     </style>
 </head>
 
@@ -239,12 +242,14 @@
             <!-- Product 1 -->
             <div class="product-card">
                 <span class="badge">NEW</span>
-                <img src="/assets/image.png" alt="RoseMarry Hair Toner" class="product-image">
+                <img src="/assets/Gemini_Generated_Image_p94y7lp94y7lp94y (1).png" alt="RoseMarry Hair Toner"
+                    class="product-image" />
                 <div class="product-info">
                     <h2 class="product-name">RoseMarry Hair Toner</h2>
+                    <p class="product-tagline">Calms the scalp while adding soft, natural shine.</p>
                     <p class="product-description">Forest Moss & Aloe</p>
                     <div class="product-footer">
-                        <span class="price">&#8377; 240</span>
+                        <span class="price"></span>
                         <a href="https://wa.me/+919974358866?text=Hi!%20I'm%20interested%20in%20the%20RoseMarry%20Hair%20Toner"
                             class="shop-now-btn">Shop Now</a>
                     </div>
@@ -253,12 +258,13 @@
 
             <!-- Product 2 -->
             <div class="product-card">
-                <img src="/assets/image copy.png" alt="Walnut Scrub" class="product-image">
+                <img src="/assets/walnut scrub.png" alt="Walnut Scrub" class="product-image" />
                 <div class="product-info">
                     <h2 class="product-name">Walnut Scrub</h2>
+                    <p class="product-tagline">A gentle yet effective exfoliant for a radiant complexion.</p>
                     <p class="product-description">Tea Tree & Water Lily</p>
                     <div class="product-footer">
-                        <span class="price">&#8377; 250</span>
+                        <span class="price"></span>
                         <a href="https://wa.me/+919974358866?text=Hi!%20I'm%20interested%20in%20the%20Walnut%20Scrub"
                             class="shop-now-btn">Shop Now</a>
                     </div>
@@ -268,14 +274,14 @@
             <!-- Product 3 -->
             <div class="product-card">
                 <span class="badge">BESTSELLER</span>
-                <img src="https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=500&h=500&fit=crop"
-                    alt="Velvet Body Lotion" class="product-image">
+                <img src="/assets/saffron gel.png" alt="Saffron Gel" class="product-image" />
                 <div class="product-info">
-                    <h2 class="product-name">Velvet Body Lotion</h2>
-                    <p class="product-description">Shea & Wildflower</p>
+                    <h2 class="product-name">Saffron Gel</h2>
+                    <p class="product-tagline">Silky hydration that locks in moisture all day long.</p>
+                    <p class="product-description">Saffron & Rosehip</p>
                     <div class="product-footer">
-                        <span class="price">$32.00</span>
-                        <a href="https://wa.me/+919974358866?text=Hi!%20I'm%20interested%20in%20the%20Velvet%20Body%20Lotion"
+                        <span class="price"></span>
+                        <a href="https://wa.me/+919974358866?text=Hi!%20I'm%20interested%20in%20the%20Saffron%20Gel"
                             class="shop-now-btn">Shop Now</a>
                     </div>
                 </div>
@@ -283,14 +289,14 @@
 
             <!-- Product 4 -->
             <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1571875257727-256c39da42af?w=500&h=500&fit=crop"
-                    alt="Herbal Essence Serum" class="product-image">
+                <img src="/assets/kumkumadi tailum.png" alt="Kumkumadi Tailum" class="product-image" />
                 <div class="product-info">
-                    <h2 class="product-name">Herbal Essence Serum</h2>
+                    <h2 class="product-name">Kumkumadi Tailum</h2>
+                    <p class="product-tagline">Lightweight serum to restore balance and boost radiance.</p>
                     <p class="product-description">Rosehip & Chamomile</p>
                     <div class="product-footer">
-                        <span class="price">$45.00</span>
-                        <a href="https://wa.me/+919974358866?text=Hi!%20I'm%20interested%20in%20the%20Herbal%20Essence%20Serum"
+                        <span class="price"></span>
+                        <a href="https://wa.me/+919974358866?text=Hi!%20I'm%20interested%20in%20the%20Kumkumadi%20Tailum"
                             class="shop-now-btn">Shop Now</a>
                     </div>
                 </div>
@@ -298,14 +304,14 @@
 
             <!-- Product 5 -->
             <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1556228852-80c7b61e2cd3?w=500&h=500&fit=crop"
-                    alt="Pure Clay Mask" class="product-image">
+                <img src="/assets/sunscreen cream.png" alt="Sunscreen Cream" class="product-image" />
                 <div class="product-info">
-                    <h2 class="product-name">Pure Clay Mask</h2>
+                    <h2 class="product-name">Sunscreen Cream</h2>
+                    <p class="product-tagline">Deeply detoxifies and tightens pores for clearer skin.</p>
                     <p class="product-description">Eucalyptus & Green Clay</p>
                     <div class="product-footer">
-                        <span class="price">$26.00</span>
-                        <a href="https://wa.me/+919974358866?text=Hi!%20I'm%20interested%20in%20the%20Pure%20Clay%20Mask"
+                        <span class="price"></span>
+                        <a href="https://wa.me/+919974358866?text=Hi!%20I'm%20interested%20in%20the%20Sunscreen%20Cream"
                             class="shop-now-btn">Shop Now</a>
                     </div>
                 </div>
@@ -314,14 +320,60 @@
             <!-- Product 6 -->
             <div class="product-card">
                 <span class="badge">LIMITED</span>
-                <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=500&h=500&fit=crop"
-                    alt="Night Repair Oil" class="product-image">
+                <img src="/assets/kajal.png" alt="Kajal" class="product-image" />
                 <div class="product-info">
-                    <h2 class="product-name">Night Repair Oil</h2>
+                    <h2 class="product-name">Kajal</h2>
+                    <p class="product-tagline">Overnight nourishment to renew and brighten the skin.</p>
                     <p class="product-description">Lavender & Jojoba</p>
                     <div class="product-footer">
-                        <span class="price">$38.00</span>
-                        <a href="https://wa.me/+919974358866?text=Hi!%20I'm%20interested%20in%20the%20Night%20Repair%20Oil"
+                        <span class="price"></span>
+                        <a href="https://wa.me/+919974358866?text=Hi!%20I'm%20interested%20in%20the%20Kajal"
+                            class="shop-now-btn">Shop Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 7 -->
+            <div class="product-card">
+                <img src="/assets/dtan facepack.png" alt="Dtan Facepack" class="product-image" />
+                <div class="product-info">
+                    <h2 class="product-name">Dtan Facepack</h2>
+                    <p class="product-tagline">Overnight nourishment to renew and brighten the skin.</p>
+                    <p class="product-description">Lavender & Jojoba</p>
+                    <div class="product-footer">
+                        <span class="price"></span>
+                        <a href="https://wa.me/+919974358866?text=Hi!%20I'm%20interested%20in%20the%20Dtan%20Facepack"
+                            class="shop-now-btn">Shop Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 8 -->
+            <div class="product-card">
+                <img src="/assets/chandan face pack.png" alt="Chandan Facepack" class="product-image" />
+                <div class="product-info">
+                    <h2 class="product-name">Chandan Facepack</h2>
+                    <p class="product-tagline">Overnight nourishment to renew and brighten the skin.</p>
+                    <p class="product-description">Chandan & Rosehip</p>
+                    <div class="product-footer">
+                        <span class="price"></span>
+                        <a href="https://wa.me/+919974358866?text=Hi!%20I'm%20interested%20in%20the%20Chandan%20Facepack"
+                            class="shop-now-btn">Shop Now</a>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Product 9 -->
+            <div class="product-card">
+                <img src="/assets/anti dandruff shampoo.png" alt="Anti Dandruff Shampoo" class="product-image" />
+                <div class="product-info">
+                    <h2 class="product-name">Anti Dandruff Shampoo</h2>
+                    <p class="product-tagline">Overnight nourishment to renew and brighten the skin.</p>
+                    <p class="product-description">Chandan & Rosehip</p>
+                    <div class="product-footer">
+                        <span class="price"></span>
+                        <a href="https://wa.me/+919974358866?text=Hi!%20I'm%20interested%20in%20the%20Anti%20Dandruff%20Shampoo"
                             class="shop-now-btn">Shop Now</a>
                     </div>
                 </div>
