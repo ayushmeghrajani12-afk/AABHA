@@ -149,25 +149,7 @@ links.forEach(link => {
   });
 });
 
-document.addEventListener('DOMContentLoaded', () => {
-  const video = document.querySelector('.back-video');
 
-  if (video) {
-    video.muted = true;
-    video.setAttribute('playsinline', '');
-    video.setAttribute('webkit-playsinline', '');
-
-    const playPromise = video.play();
-    if (playPromise !== undefined) {
-      playPromise.catch(() => {
-        // iOS fallback: play on first touch
-        document.addEventListener('touchstart', () => {
-          video.play();
-        }, { once: true });
-      });
-    }
-  }
-});
 
 
 

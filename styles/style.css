@@ -1463,35 +1463,3 @@ a:focus {
   /* your gold hover */
   outline: none;
 }
-
-.back-video {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: -1;
-
-  /* iOS fixes */
-  pointer-events: none;
-  transform: translateZ(0);
-  -webkit-transform: translateZ(0);
-}
-
-.hero-bg-fallback {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: -2;
-}
-
-@supports (-webkit-touch-callout: none) {
-
-  /* iOS only */
-  .back-video {
-    opacity: 0.85;
-  }
-}
